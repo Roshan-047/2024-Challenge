@@ -34,3 +34,28 @@ int getLongestSubarray(vector<int>& nums, int k){
         }
         return ans;
     }
+
+
+if the values are only positive then the optimal solution will be using two pointer approach
+here we are sliding the window if the sum exceeds the k then we subtract leftmost element till the sum is 
+greater than k. 
+
+int longestSubarrayWithSumK(vector<int> a, long long k) {
+    int right = 0, left = 0;
+    long long sum = a[0];
+    int maxlen = 0;
+    while(right<a.size()){
+        while(left<=right && sum>k){
+            sum -= a[left];
+            left++;
+        }
+        if(sum == k){
+            maxlen = max(maxlen, right-left+1);
+        }
+        right++;
+        if(right<a.size()) sum+=a[right];
+         
+        
+    }
+    return maxlen;
+}
